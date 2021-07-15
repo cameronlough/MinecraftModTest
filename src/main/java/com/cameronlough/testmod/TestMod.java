@@ -1,5 +1,6 @@
 package com.cameronlough.testmod;
 
+import com.cameronlough.testmod.init.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -23,7 +24,9 @@ import java.util.stream.Collectors;
 public class TestMod
 {
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
+
+    public static String MODID = "testmod";
 
     public TestMod() {
         // Register the setup method for modloading
@@ -33,6 +36,8 @@ public class TestMod
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+        ModItems.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
     private void setup(final FMLCommonSetupEvent event)
